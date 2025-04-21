@@ -1,34 +1,3 @@
-// Intersection Observer for fade-in animations
-const fadeInElements = document.querySelectorAll('.feature-card, .stat-card, .hero-content, .hero-image');
-
-const fadeInOptions = {
-    threshold: 0.3,
-    rootMargin: '0px'
-};
-
-const fadeInOnScroll = new IntersectionObserver((entries, fadeInOnScroll) => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('fade-in');
-        fadeInOnScroll.unobserve(entry.target);
-    });
-}, fadeInOptions);
-
-fadeInElements.forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(20px)';
-    element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-    fadeInOnScroll.observe(element);
-});
-
-// Add fade-in class for visible elements
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.fade-in').forEach(element => {
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0)';
-    });
-});
-
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
